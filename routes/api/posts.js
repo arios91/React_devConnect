@@ -149,7 +149,6 @@ router.post('/comment/:postid',
     async (req, res) => {
         const errors = validationResult(req);
         if(!errors.isEmpty()){
-            console.error(errors.array());
             return res.status(400).json({errors: errors.array()});
         }
 
@@ -168,7 +167,7 @@ router.post('/comment/:postid',
 
             await post.save();
 
-            res.json(post);
+            res.json(post.comments);
             
         } catch (error) {
             console.error(err.message);
